@@ -1,0 +1,196 @@
+.detail-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #667eea;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listing-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.listing-image {
+  height: 280px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+  }
+}
+
+.listing-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.listing-category {
+  font-size: 0.75rem;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.listing-title {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin: 0;
+}
+
+.listing-price {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0;
+}
+
+.listing-description {
+  color: #4a5568;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.listing-seller {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.listing-status {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+
+  // Couleur selon le statut
+  &.status-active { background: #c6f6d5; color: #276749; }
+  &.status-reserved { background: #fefcbf; color: #744210; }
+  &.status-sold { background: #fed7d7; color: #742a2a; }
+}
+
+.owner-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 8px;
+}
+
+// Section messages
+.messages-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h3 {
+    color: #2d3748;
+    margin: 0;
+  }
+}
+
+.message-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.empty-messages {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+}
+
+.message-bubble {
+  padding: 8px 12px;
+  background: #f7fafc;
+  border-radius: 8px;
+  max-width: 80%;
+  
+  // Message envoyé
+  &.message-sent {
+    align-self: flex-end;
+    background: #667eea;
+    color: white;
+    
+    .message-sender, .message-time { color: rgba(255,255,255,0.7); }
+  }
+}
+
+.message-sender {
+  font-size: 0.75rem;
+  color: #718096;
+  font-weight: 600;
+}
+.message-content {
+  margin: 4px 0;
+  font-size: 0.95rem;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  color: #718096;
+}
+
+.message-form {
+  display: flex;
+  gap: 0.5rem;
+  
+  input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+  }
+}
+
+.login-prompt {
+  text-align: center;
+  color: #718096;
+  margin-top: 2rem;
+
+  a {
+    color: #667eea;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.loading {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+}
+

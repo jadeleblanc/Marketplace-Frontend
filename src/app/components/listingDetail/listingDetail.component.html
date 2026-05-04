@@ -1,0 +1,77 @@
+<div class="detail-container">
+  <div *ngIf="isLoading" class="loading">Chargement...</div>
+
+  <div *ngIf="error" class="error error-message">{{ error }}</div>
+
+  <div *ngIf="listing && !isLoading">
+  
+  <a routerLink="/listings" class="back-link">← Retour aux annonces</a>
+
+    <div class="detail-grid">
+
+      <div class="card listing-section">
+
+        <!-- images -->
+        <div class="listing-image">
+          <img *ngIf="listing.images.length > 0" [src]="listing.images[0]" [alt]="listing.title" />
+          <div *ngIf="listing.images.length === 0" class="no-image">Pas d'image</div>
+        </div>
+
+        <!-- Infos -->
+        <div class="listing-info">
+          <span class="listing-category">{{ listing.category }}</span>
+          <span class="listing-status" [class]="'status-' + listing.status">{{ listing.status }}</span>
+        </div>
+
+        <h2 class="listing-title">{{ listing.title }}</h2>
+        <p class="listing-price">{{ listing.price }} $</p>
+        <p class="listing-description">{{ listing.description }}</p>
+        <p class="listing-seller">Vendu par <strong>{{ listing.seller.name }}</strong></p>
+
+        <!-- Owner actions -->
+        <div class="owner-actions" *ngIf="isOwner()">
+          <a [routerLink]="['/listings/edit', listing._id]" class="btn btn-secondary">Modifier l'annonce</a>
+          <button class="btn btn-danger" (click)="deleteListing()">Supprimer l'annonce</button>
+        </div>
+
+      </div>
+
+      <!-- Section messages  -->
+      <div class="card messages-section" *ngIf="authService.isLoggedIn()">
+        <h3>Conversations</h3>
+
+        <!-- Liste messages -->
+        <div class="messages-list">
+          <div *ngIf="messages.length === 0" class="empty-messages">
+            Aucun message, Commencez une conversation !
+          </div>
+
+          <div *ngFor="let message of messages" class="message-bubble"
+          [class.message-sent]="authService.currentUser()?._id === message.sender._id"
+          [class.message-read]="message.read">
+            <span class="message-sender">{{ message.sender.name }}</span>
+            <p class="message-content">{{ message.content }}</p>
+            <span class="message-time">{{ message.createdAt | date:'HH:mm' }}</span>
+          </div>
+        </div>
+        
+        <!-- Formulaire envoi message -->
+        <div class="message-form">
+          <input type="text" [(ngModel)]="newMessage" placeholder="Écrire un message..." (keyup.enter)="sendMessage()" />
+          <button class="btn btn-primary" (click)="sendMessage()" [disabled]="isSending || !newMessage.trim()">
+            {{ isSending ? 'Envoi en cours...' : 'Envoyer' }}
+          </button>
+        </div>
+      
+      </div>
+
+      <!-- Message si non connecté -->
+      <div class="card messages-section" *ngIf="!authService.isLoggedIn()">
+        <p class="login-prompt">
+          <a routerLink="/login">Connectez-vous</a> pour contacter le vendeur.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>

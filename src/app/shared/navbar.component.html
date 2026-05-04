@@ -1,0 +1,27 @@
+<div class="navbar">
+  <div class="navbar-container">
+
+    
+    <a routerLink="/listings" class="navbar-brand">
+      <img src="logo.png" alt="MarketPlace" height="35" />
+    </a>
+
+    <div class="navbar-links">
+
+      <a routerLink="/listings" routerLinkActive="active" class="nav-link">Annonces</a>
+
+      <!-- si connecté -->
+      <ng-container *ngIf="authService.isLoggedIn()">
+        <a routerLink="/listings/create" routerLinkActive="active" class="nav-link">+ Nouvelle annonce</a>
+        <button class="btn btn-secondary logout-button" (click)="logout()">Logout</button>
+      </ng-container>
+
+      <!-- si pas connecté -->
+      <ng-container *ngIf="!authService.isLoggedIn()">
+        <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+        <a routerLink="/signup" routerLinkActive="active" class="nav-link">Sign Up</a>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

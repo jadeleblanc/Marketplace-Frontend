@@ -1,0 +1,65 @@
+<div class="listings-container">
+
+  <div class="listings-header">
+    <h2>Annonces</h2>
+    <a *ngIf="authService.isLoggedIn()" routerLink="/listings/create" class="btn btn-primary">
+      + Nouvelle annonce
+    </a>
+  </div>
+
+  <!-- Filtres -->
+  <div class="card filters-card">
+    <div class="filters">
+      <div class="form-group">
+        <label>Catégorie</label>
+        <select name="category" [(ngModel)]="filters.category">
+          <option value="">Toutes</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Prix min</label>
+        <input type="number" name="minPrice" [(ngModel)]="filters.minPrice" placeholder="0" />
+      </div>
+      <div class="form-group">
+        <label>Prix max</label>
+        <input type="number" name="maxPrice" [(ngModel)]="filters.maxPrice" placeholder="9999" />
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-primary" (click)="applyFilters()">Filtrer</button>
+        <button class="btn btn-secondary" (click)="resetFilters()">Réinitialiser</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Chargement...</div>
+  <div *ngIf="error" class="error error-message">{{ error }}</div>
+
+  <!-- Liste des annonces -->
+  <div class="listings-grid" *ngIf="!isLoading">
+
+    <div *ngIf="listings.length === 0" class="empty-state">
+      Aucune annonce trouvée.
+    </div>
+
+    <div
+      *ngFor="let listing of listings"
+      [routerLink]="['/listings', listing._id]"
+      class="card listing-card"
+    >
+      <div class="listing-image">
+        <img *ngIf="listing.images.length > 0" [src]="listing.images[0]" [alt]="listing.title" />
+        <div *ngIf="listing.images.length === 0" class="no-image">Pas d'image</div>
+      </div>
+      <div class="listing-info">
+        <span class="listing-category">{{ listing.category }}</span>
+        <h3 class="listing-title">{{ listing.title }}</h3>
+        <p class="listing-price">{{ listing.price }} $</p>
+        <span class="listing-status" [class]="'status-' + listing.status">{{ listing.status }}</span>
+        <p class="listing-seller">Par {{ listing.seller.name }}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
