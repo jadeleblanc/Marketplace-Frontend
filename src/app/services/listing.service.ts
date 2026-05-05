@@ -4,7 +4,7 @@ import { Listing, ListingFilters, ListingPayload } from "../models/listing.model
 
 @Injectable({ providedIn: 'root' })
 export class ListingService {
-    private apiUrl = "http://localhost:5000/api/listings";
+    private apiUrl = "https://marketplace-backend-oc74.onrender.com/api/listings";
 
     constructor(private http: HttpClient) { }
 

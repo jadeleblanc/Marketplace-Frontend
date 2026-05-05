@@ -4,7 +4,7 @@ import { Message, MessagePayload } from "../models/message.model";
 
 @Injectable({ providedIn: 'root' })
 export class MessageService {
-    private apiUrl = "http://localhost:5000/api/messages";
+    private apiUrl = "https://marketplace-backend-oc74.onrender.com/api/messages";
 
     constructor(private http: HttpClient) { }
 

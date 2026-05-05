@@ -7,7 +7,7 @@ export class SocketService {
   private socket: Socket;
 
     constructor() {
-        this.socket = io("http://localhost:5000", { timeout: 5000, reconnectionAttempts: 3 });
+        this.socket = io("https://marketplace-backend-oc74.onrender.com", { timeout: 5000, reconnectionAttempts: 3 });
     }
 
     // Rejoindre une room d'une annonce pour recevoir les messages en temps réel

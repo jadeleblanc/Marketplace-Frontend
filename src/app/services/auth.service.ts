@@ -5,7 +5,7 @@ import { AuthResponse, LoginRequest, SignupRequest, User } from '../models/user.
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private apiUrl = 'http://localhost:5000/api/auth';
+    private apiUrl = 'https://marketplace-backend-oc74.onrender.com/api/auth';
 
     currentUser = signal<User | null>(null);
 
