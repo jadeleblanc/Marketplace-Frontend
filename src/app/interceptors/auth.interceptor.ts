@@ -16,7 +16,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(req).pipe(
-    timeout(10000),
+    timeout(60000),
     catchError(err => {
       if (err.name === 'TimeoutError') {
         return throwError(() => ({ error: { message: 'Le serveur ne répond pas. Vérifiez que le backend est démarré.' } }));
