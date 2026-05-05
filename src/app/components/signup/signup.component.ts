@@ -27,6 +27,7 @@ export class SignupComponent {
 
     this.authService.register({ name: this.name, email: this.email, password: this.password }).subscribe({
       next: () => {
+        this.isLoading = false;
         this.router.navigate(['/listings']);
       },
       error: (err) => {
